@@ -26,7 +26,7 @@ class OverviewFragment: Fragment() {
         val binding = FragmentOverviewBinding.inflate(inflater)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.recyclerView.adapter = adapter
+        binding.viewPager.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.randomPicturesList?.collectLatest {
