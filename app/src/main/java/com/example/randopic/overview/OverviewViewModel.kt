@@ -10,7 +10,6 @@ import com.example.randopic.PictureApi
 import com.example.randopic.PicturePagingSource
 import com.example.randopic.data.Picture
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
