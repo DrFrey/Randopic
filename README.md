@@ -1,3 +1,3 @@
 # Randopic
 A training app that allows a user to load a list of pictures one by one endlessly.
-Kotlin, Paging, DataBinding, Flow, Moshi, Retrofit2
+Kotlin, ViewPager2, Paging, Glide, DataBinding, Flow, Moshi, Retrofit2
