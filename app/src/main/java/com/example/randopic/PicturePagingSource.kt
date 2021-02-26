@@ -10,22 +10,27 @@ private const val STARTING_PAGE_INDEX = 1
 private const val ITEMS_COUNT = 10
 
 class PicturePagingSource(
-    private val service: PictureApiService
+    private val service: PictureApiService,
+    private val filter: PictureFilterValues
 ) : PagingSource<Int, Picture>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Picture> {
         val position = params.key ?: STARTING_PAGE_INDEX
+
         return try {
-            val response = service.getListOfRandomPics(ITEMS_COUNT, position)
+            val response = if (filter == PictureFilterValues.RANDOM) service.getListOfRandomPics(
+                ITEMS_COUNT,
+                position
+            ) else service.getOrderedPictures(count = ITEMS_COUNT, page = position, order = filter.value)
             val nextKey = if (response.isEmpty()) {
                 null
             } else {
                 position + (params.loadSize / ITEMS_COUNT)
             }
             LoadResult.Page(
-                    data = response,
-                    prevKey = if (position == STARTING_PAGE_INDEX) null else position-1,
-                    nextKey =nextKey
+                data = response,
+                prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
+                nextKey = nextKey
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)

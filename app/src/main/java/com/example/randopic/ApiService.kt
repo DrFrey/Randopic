@@ -12,6 +12,12 @@ private const val BASE_URL = "https://api.unsplash.com/"
 private const val ACCESS_KEY = "Cyc3Z9xSnyATUbouOZUwi4LYvCKFDlqdBL8SKe8ZXxA"
 private const val CLIENT_PARAM = "?client_id=" + ACCESS_KEY
 
+enum class PictureFilterValues(val value: String) {
+    POPULAR("popular"),
+    LATEST("latest"),
+    OLDEST("oldest"),
+    RANDOM("random")
+}
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -24,13 +30,20 @@ private val retrofit = Retrofit.Builder()
 
 interface PictureApiService {
     @GET("photos/random/" + CLIENT_PARAM)
-    suspend fun getRandomPicture() : Picture
+    suspend fun getRandomPicture(): Picture
 
     @GET("photos/random/" + CLIENT_PARAM)
-    suspend fun getListOfRandomPics(@Query("count") count: Int = 10, @Query("page") page: Int = 1) : List<Picture>
+    suspend fun getListOfRandomPics(
+        @Query("count") count: Int = 10,
+        @Query("page") page: Int = 1
+    ): List<Picture>
 
     @GET("photos/" + CLIENT_PARAM)
-    suspend fun getPicturesPage() : List<Picture>
+    suspend fun getOrderedPictures(
+        @Query("per_page") count: Int = 10,
+        @Query("page") page: Int = 1,
+        @Query("order_by") order: String = "latest"
+    ): List<Picture>
 }
 
 object PictureApi {
