@@ -1,7 +1,10 @@
 package com.example.randopic.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Picture(
     val id: String,
     @Json(name = "created_at") val createdAt: String?,
@@ -25,4 +28,4 @@ data class Picture(
     val location: Location?,
     val views: Int?,
     val downloads: Int?
-)
+) : Parcelable

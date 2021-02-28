@@ -1,7 +1,10 @@
 package com.example.randopic.data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class User(
     val id: String,
     @Json(name = "updated_at") val updatedAt: String?,
@@ -20,4 +23,4 @@ data class User(
     @Json(name = "total_likes") val totalLikes: Int?,
     @Json(name = "total_photos") val totalPhotos: Int?,
     @Json(name = "accepted_tos") val acceptedTos: Boolean?
-    )
+    ) : Parcelable

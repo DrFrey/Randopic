@@ -6,4 +6,13 @@
     <string name="random">Random</string>
     <string name="info">Info</string>
     <string name="retry">Retry</string>
+    <string name="published_on">Published on:</string>
+    <string name="views">Views:</string>
+    <string name="downloads">Downloads:</string>
+    <string name="camera">Camera:</string>
+    <string name="focal_length">Focal length:</string>
+    <string name="aperture">Aperture:</string>
+    <string name="shutter_speed">Shutter speed:</string>
+    <string name="iso">ISO:</string>
+    <string name="dimensions">Dimensions:</string>
 </resources>

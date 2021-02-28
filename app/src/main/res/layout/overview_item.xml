@@ -25,7 +25,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@{picture.user.username}"
-            app:userpicUrl="@{picture.user.profileImage.small}"
+            app:imageInTextView="@{picture.user.profileImage.small}"
             tools:text="Username"/>
 
         <ImageView
@@ -37,5 +37,15 @@
             android:contentDescription="@{picture.altDescription}"
             android:scaleType="fitXY"
             app:imageUrl="@{picture.urls.small}" />
+
+        <TextView
+            android:id="@+id/likes_tv"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:drawablePadding="10dp"
+            android:text="@{`\u2764` + picture.likes.toString()}" />
     </LinearLayout>
 </layout>

@@ -6,8 +6,10 @@ import android.view.*
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.randopic.PictureFilterValues
 import com.example.randopic.R
@@ -20,7 +22,10 @@ class OverviewFragment : Fragment() {
         ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
 
-    private val adapter = PictureDataAdapter()
+    private val adapter = PictureDataAdapter(PictureDataAdapter.OnClickListener {
+        viewModel.displayPictureDetails(it)
+    })
+
     private lateinit var binding: FragmentOverviewBinding
 
     override fun onCreateView(
@@ -34,6 +39,12 @@ class OverviewFragment : Fragment() {
 
         initAdapter()
 
+        viewModel.navigateToSelectedPicture.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailsFragment(it))
+                viewModel.displayPictureDetailsComplete()
+            }
+        })
         binding.retryButton.setOnClickListener { adapter.retry() }
 
         refreshAdapter()

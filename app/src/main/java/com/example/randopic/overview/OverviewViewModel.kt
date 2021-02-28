@@ -1,6 +1,8 @@
 package com.example.randopic.overview
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
@@ -33,6 +35,18 @@ class OverviewViewModel : ViewModel() {
         } catch (e: Exception) {
             Log.d("___pic", e.message.toString())
         }
+    }
+
+    private val _navigateToSelectedPicture = MutableLiveData<Picture>()
+    val navigateToSelectedPicture: LiveData<Picture>
+        get() = _navigateToSelectedPicture
+
+    fun displayPictureDetails(picture: Picture) {
+        _navigateToSelectedPicture.value = picture
+    }
+
+    fun displayPictureDetailsComplete() {
+        _navigateToSelectedPicture.value = null
     }
 
 }

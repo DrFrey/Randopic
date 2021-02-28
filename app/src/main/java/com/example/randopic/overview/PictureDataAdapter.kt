@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.randopic.data.Picture
 import com.example.randopic.databinding.OverviewItemBinding
 
-class PictureDataAdapter: PagingDataAdapter<Picture, PictureDataAdapter.ViewHolder>(DiffCallback) {
+class PictureDataAdapter(private val onClickListener: OnClickListener): PagingDataAdapter<Picture, PictureDataAdapter.ViewHolder>(DiffCallback) {
 
     class ViewHolder(private val binding: OverviewItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(picture: Picture) {
@@ -24,6 +24,9 @@ class PictureDataAdapter: PagingDataAdapter<Picture, PictureDataAdapter.ViewHold
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val picture = getItem(position)
         if (picture != null) {
+            holder.itemView.setOnClickListener {
+                onClickListener.onClick(picture)
+            }
             holder.bind(picture)
         }
     }
@@ -36,6 +39,9 @@ class PictureDataAdapter: PagingDataAdapter<Picture, PictureDataAdapter.ViewHold
         override fun areContentsTheSame(oldItem: Picture, newItem: Picture): Boolean {
             return oldItem == newItem
         }
+    }
 
+    class OnClickListener(val clickListener: (picture: Picture) -> Unit) {
+        fun onClick(picture: Picture) = clickListener(picture)
     }
 }
