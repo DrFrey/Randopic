@@ -15,4 +15,5 @@
     <string name="shutter_speed">Shutter speed:</string>
     <string name="iso">ISO:</string>
     <string name="dimensions">Dimensions:</string>
+    <string name="back">Back</string>
 </resources>

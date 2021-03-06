@@ -16,7 +16,10 @@
         android:name="com.example.randopic.details.DetailsFragment"
         android:label="DetailsFragment" >
         <argument
-            android:name="pictureData"
-            app:argType="com.example.randopic.data.Picture" />
+            android:name="pictureDataId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
     </fragment>
 </navigation>

@@ -7,12 +7,12 @@ import com.example.randopic.data.Picture
 import java.lang.IllegalArgumentException
 
 class DetailsViewModelFactory(
-    private val picture: Picture,
+    private val pictureId: String,
     private val application: Application
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
-            return DetailsViewModel(picture, application) as T
+            return DetailsViewModel(pictureId, application) as T
         }
         throw IllegalArgumentException("Unknown viewmodel class")
     }

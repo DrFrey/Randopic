@@ -1,6 +1,7 @@
 package com.example.randopic
 
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -51,10 +52,11 @@ fun loadImageIntoTextview(textView: TextView, url: String?) {
 @BindingAdapter("formattedDateTime")
 fun setFormattedDateTime(textView: TextView, dateString: String?) {
     try {
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         val inputDate = LocalDateTime.parse(dateString, inputFormatter)
         textView.text = inputDate.format((DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)))
     } catch (e: Exception) {
         textView.text = dateString
+        Log.d("___", "error formatting date: ${e.message}")
     }
 }

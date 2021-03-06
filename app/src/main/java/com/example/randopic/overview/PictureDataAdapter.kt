@@ -25,7 +25,7 @@ class PictureDataAdapter(private val onClickListener: OnClickListener): PagingDa
         val picture = getItem(position)
         if (picture != null) {
             holder.itemView.setOnClickListener {
-                onClickListener.onClick(picture)
+                onClickListener.onClick(picture.id)
             }
             holder.bind(picture)
         }
@@ -41,7 +41,7 @@ class PictureDataAdapter(private val onClickListener: OnClickListener): PagingDa
         }
     }
 
-    class OnClickListener(val clickListener: (picture: Picture) -> Unit) {
-        fun onClick(picture: Picture) = clickListener(picture)
+    class OnClickListener(val clickListener: (pictureId: String) -> Unit) {
+        fun onClick(pictureId: String) = clickListener(pictureId)
     }
 }

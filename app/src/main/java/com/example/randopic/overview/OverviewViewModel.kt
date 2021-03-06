@@ -37,12 +37,12 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
-    private val _navigateToSelectedPicture = MutableLiveData<Picture>()
-    val navigateToSelectedPicture: LiveData<Picture>
+    private val _navigateToSelectedPicture = MutableLiveData<String>()
+    val navigateToSelectedPicture: LiveData<String>
         get() = _navigateToSelectedPicture
 
-    fun displayPictureDetails(picture: Picture) {
-        _navigateToSelectedPicture.value = picture
+    fun displayPictureDetails(pictureId: String) {
+        _navigateToSelectedPicture.value = pictureId
     }
 
     fun displayPictureDetailsComplete() {
