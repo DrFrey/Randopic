@@ -54,6 +54,15 @@ class DetailsViewModel(
         _navigateToOverview.value = null
     }
 
-    val pictureHeight = _picture.value?.height
+    private val _displayInfoDialog = MutableLiveData<Boolean>()
+    val displayInfoDialog: LiveData<Boolean>
+        get() = _displayInfoDialog
 
+    fun displayInfo() {
+        _displayInfoDialog.value = true
+    }
+
+    fun displayInfoComplete() {
+        _displayInfoDialog.value = false
+    }
 }

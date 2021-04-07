@@ -31,7 +31,7 @@ class OverviewViewModel : ViewModel() {
                 pagingSourceFactory = { PicturePagingSource(PictureApi.retrofitService, filter) }
             ).flow
                 .cachedIn(viewModelScope)
-            Log.d("___pic", "Pager loaded + ${filter.value}; ${picturesList.toString()}")
+            Log.d("___pic", "Pager loaded + ${filter.value}")
         } catch (e: Exception) {
             Log.d("___pic", e.message.toString())
         }

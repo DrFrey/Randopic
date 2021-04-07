@@ -80,19 +80,14 @@ class OverviewFragment : Fragment() {
             binding.recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
             binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
             binding.retryButton.isVisible = loadState.source.refresh is LoadState.Error
+            binding.errorTv.isVisible = loadState.source.refresh is LoadState.Error
 
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
                 ?: loadState.prepend as? LoadState.Error
             errorState?.let {
-                Toast.makeText(
-                    context,
-                    "\uD83D\uDE28 Wooops ${it.error}",
-                    Toast.LENGTH_LONG
-                ).show()
-
-                Log.d("___pic", "Toast triggered + ${it.error.localizedMessage}")
+                binding.errorTv.text = it.error.localizedMessage
             }
         }
     }

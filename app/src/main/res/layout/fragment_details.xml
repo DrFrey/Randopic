@@ -11,7 +11,7 @@
         <import type="android.view.View"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,7 +25,7 @@
             <TextView
                 android:id="@+id/details_username_tv"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
                 style="@style/infoTextStyle"
@@ -36,174 +36,14 @@
             <ImageView
                 android:id="@+id/details_picture_iv"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@{viewModel.picture.altDescription}"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{viewModel.picture.urls.regular}" />
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="5">
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/published_on" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        app:formattedDateTime="@{viewModel.picture.createdAt}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="4">
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/views" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.views.toString()}" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/downloads" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.downloads.toString()}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="4">
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/camera" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.exif.make}" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/focal_length" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.exif.focalLength}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="4">
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/aperture" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.exif.aperture}" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/shutter_speed" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.exif.exposureTime}" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="4">
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/iso" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.exif.iso.toString()}" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/dimensions" />
-
-                    <TextView
-                        style="@style/infoTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@{viewModel.picture.height + `x` + viewModel.picture.width}" />
-                </TableRow>
-            </TableLayout>
 
         </LinearLayout>
 
@@ -215,10 +55,7 @@
             style="@style/infoTextStyle"
             android:text="@{viewModel.errorMsg}"
             android:visibility="@{viewModel.result ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@id/back_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
             tools:text="error message" />
 
         <Button
@@ -226,11 +63,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/error_tv"
+            android:layout_gravity="bottom|center_horizontal"
             android:onClick="@{() -> viewModel.goBack()}"
             android:visibility="@{viewModel.result ? View.GONE : View.VISIBLE}"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:background="@color/design_default_color_secondary"
+            android:src="@drawable/ic_outline_info_24"
+            android:onClick="@{() -> viewModel.displayInfo()}"/>
+    </FrameLayout>
 </layout>

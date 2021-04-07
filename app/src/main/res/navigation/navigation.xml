@@ -21,5 +21,49 @@
         <action
             android:id="@+id/action_detailsFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_infoDialogFragment"
+            app:destination="@id/infoDialogFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/infoDialogFragment"
+        android:name="com.example.randopic.details.InfoDialogFragment"
+        android:label="InfoDialogFragment">
+        <argument
+            android:name="createdAt"
+            app:argType="string"
+             />
+        <argument
+            android:name="views"
+            app:argType="string"
+            />
+        <argument
+            android:name="downloads"
+            app:argType="string"
+            />
+        <argument
+            android:name="make"
+            app:argType="string"
+            />
+        <argument
+            android:name="focalLength"
+            app:argType="string"
+            />
+        <argument
+            android:name="aperture"
+            app:argType="string"
+            />
+        <argument
+            android:name="exposureTime"
+            app:argType="string"
+            />
+        <argument
+            android:name="iso"
+            app:argType="string"
+            />
+        <argument
+            android:name="dimensions"
+            app:argType="string"
+            />
+    </dialog>
 </navigation>

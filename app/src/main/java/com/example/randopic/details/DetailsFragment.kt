@@ -20,19 +20,42 @@ class DetailsFragment: Fragment() {
         val binding = FragmentDetailsBinding.inflate(inflater)
         val picture = DetailsFragmentArgs.fromBundle(requireArguments()).pictureDataId
         val viewModelFactory = DetailsViewModelFactory(picture, application)
-        val detailsViewMode = ViewModelProvider(this, viewModelFactory).get(DetailsViewModel::class.java)
-        binding.viewModel = detailsViewMode
+        val detailsViewModel = ViewModelProvider(this, viewModelFactory).get(DetailsViewModel::class.java)
+        binding.viewModel = detailsViewModel
         binding.lifecycleOwner = this
 
 
-        detailsViewMode.navigateToOverview.observe(viewLifecycleOwner, Observer {
+        detailsViewModel.navigateToOverview.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 this.findNavController().navigate(
                     DetailsFragmentDirections.actionDetailsFragmentToOverviewFragment()
                 )
-                detailsViewMode.goBackComplete()
+                detailsViewModel.goBackComplete()
             }
         })
+
+        detailsViewModel.displayInfoDialog.observe(viewLifecycleOwner, {
+            if (it == true) {
+                //val infoDialogFragment = InfoDialogFragment()
+                //infoDialogFragment.show(parentFragmentManager, "info")
+                val pic = detailsViewModel.picture.value
+                this.findNavController().navigate(
+                    DetailsFragmentDirections.actionDetailsFragmentToInfoDialogFragment(
+                        pic?.createdAt.toString(),
+                        pic?.views.toString(),
+                        pic?.downloads.toString(),
+                        pic?.exif?.make.toString(),
+                        pic?.exif?.focalLength.toString(),
+                        pic?.exif?.aperture.toString(),
+                        pic?.exif?.exposureTime.toString(),
+                        pic?.exif?.iso.toString(),
+                        pic?.height.toString() + "x" + pic?.width.toString()
+                    )
+                )
+                detailsViewModel.displayInfoComplete()
+            }
+        })
+
         return binding.root
     }
 }
